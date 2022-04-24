@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  CI/CD:
+  CI_CD:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:
