@@ -66,9 +66,9 @@ resource "aws_iam_policy" "github_actions_policy" {
 
 resource "aws_iam_user" "github_actions_user" {
   name = "github-actions"
-
   tags = {
     Owner = "Alvin"
+    Team  = "infra"
   }
 }
 

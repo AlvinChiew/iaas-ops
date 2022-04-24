@@ -23,6 +23,10 @@ module "iam" {
   source = "./iam"
 }
 
+module "sso" {
+  source = "./sso"
+}
+
 module "vpc" {
   source = "./vpc"
 }
