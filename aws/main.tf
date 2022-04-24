@@ -19,6 +19,10 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
+module "ecr" {
+  source = "./ecr"
+}
+
 module "iam" {
   source = "./iam"
 }
