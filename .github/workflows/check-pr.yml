@@ -1,0 +1,86 @@
+name: "Check PR"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI/CD:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    env:
+      WORK_DIR: "./aws"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: GitHub Config
+        run: git config --global url."https://oauth2:${{ secrets.INFRA_ACCESS_TOKEN }}@github.com".insteadOf https://github.com
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # - name: Setup Terraform
+      #   uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+        working-directory: ${{env.WORK_DIR}}
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ${{env.WORK_DIR}}
+
+      - name: Terraform Plan
+        id: plan
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color
+        working-directory: ${{env.WORK_DIR}}
+        continue-on-error: true
+
+      - name: Update Pull Request
+        uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "Terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `
+            #### Status
+            🖌 Format and Style: \`${{ steps.fmt.outcome }}\`
+            ⚙️ Initialization: \`${{ steps.init.outcome }}\`
+            📖 Terraform Plan: \`${{ steps.plan.outcome }}\`
+
+            #### Details
+            \`\`\`
+            ${process.env.PLAN}
+            \`\`\`
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*
+            `;
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Apply
+        if: github.event_name == 'push'
+        run: terraform apply -auto-approve
+        working-directory: ${{env.WORK_DIR}}
