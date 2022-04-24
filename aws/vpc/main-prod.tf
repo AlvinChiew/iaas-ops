@@ -1,4 +1,4 @@
-resource "aws_vpc" "prod-alvinchiew" {
+resource "aws_vpc" "prod_alvinchiew" {
   cidr_block           = "20.1.0.0/16"
   enable_dns_hostnames = true
 
