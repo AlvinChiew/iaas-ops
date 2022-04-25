@@ -3,8 +3,8 @@ resource "aws_vpc" "prod_alvinchiew" {
   enable_dns_hostnames = true
 
   tags = {
-    Name        = "VPC-production-alvinchiew"
-    Environment = "production"
+    Name        = "VPC-prod-alvinchiew"
+    Environment = "prod"
     Application = "alvinchiew-prod-vpc"
   }
 

@@ -3,8 +3,8 @@ resource "aws_vpc" "stag_alvinchiew" {
   enable_dns_hostnames = true
 
   tags = {
-    Name        = "VPC-staging-naluri"
-    Environment = "staging"
+    Name        = "VPC-stag-naluri"
+    Environment = "stag"
     Application = "alvinchiew-staging-vpc"
     Tier        = "Private"
   }
