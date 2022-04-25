@@ -20,17 +20,17 @@ provider "aws" {
 }
 
 module "ecr" {
-  source = "./ecr"
+  source = "./operations/ecr"
 }
 
 module "iam" {
-  source = "./iam"
+  source = "./operations/iam"
 }
 
 module "sso" {
-  source = "./sso"
+  source = "./operations/sso"
 }
 
 module "vpc" {
-  source = "./vpc"
+  source = "./operations/vpc"
 }
