@@ -14,7 +14,7 @@ resource "aws_vpc" "stag_alvinchiew" {
   }
 }
 
-resource "aws_subnet" "subnet_stag_alvinchiew_a" {
+resource "aws_subnet" "stag_alvinchiew_a" {
   vpc_id            = aws_vpc.stag_alvinchiew.id
   cidr_block        = "30.1.0.0/20"
   availability_zone = "ap-southeast-1a"
@@ -24,7 +24,7 @@ resource "aws_subnet" "subnet_stag_alvinchiew_a" {
   }
 }
 
-resource "aws_subnet" "subnet_stag_alvinchiew_b" {
+resource "aws_subnet" "stag_alvinchiew_b" {
   vpc_id            = aws_vpc.stag_alvinchiew.id
   cidr_block        = "30.1.16.0/20"
   availability_zone = "ap-southeast-1b"
@@ -34,7 +34,7 @@ resource "aws_subnet" "subnet_stag_alvinchiew_b" {
   }
 }
 
-resource "aws_subnet" "subnet_stag_alvinchiew_c" {
+resource "aws_subnet" "stag_alvinchiew_c" {
   vpc_id            = aws_vpc.stag_alvinchiew.id
   cidr_block        = "30.1.32.0/20"
   availability_zone = "ap-southeast-1c"
