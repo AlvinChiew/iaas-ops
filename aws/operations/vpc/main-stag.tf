@@ -10,7 +10,7 @@ resource "aws_vpc" "stag_alvinchiew" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 

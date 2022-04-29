@@ -8,7 +8,7 @@ resource "aws_vpc" "prod_alvinchiew" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
