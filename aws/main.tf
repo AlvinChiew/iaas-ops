@@ -33,6 +33,14 @@ module "ecr" {
   source = "./operations/ecr"
 }
 
+# module "ecs_cluster" {
+#   source      = "./operations/ecs_cluster"
+#   prod_vpc_id = module.vpc.prod_vpc_id
+#   prod_sg_id = module.vpc.prod_sg_id
+#   stag_vpc_id = module.vpc.stag_vpc_id
+#   stag_sg_id = module.vpc.stag_sg_id
+# }
+
 module "iam" {
   source = "./operations/iam"
 }
