@@ -47,6 +47,10 @@ module "iam" {
   source = "./operations/iam"
 }
 
+module "s3" {
+  source = "./operations/s3"
+}
+
 module "sso" {
   source = "./operations/sso"
 }
