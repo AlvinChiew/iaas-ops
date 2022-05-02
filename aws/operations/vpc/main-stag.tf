@@ -20,7 +20,8 @@ resource "aws_subnet" "stag_alvinchiew_a" {
   availability_zone = "ap-southeast-1a"
 
   tags = {
-    Name = "subnet-stag-alvinchiew-a"
+    Name    = "subnet-stag-alvinchiew-a"
+    Network = "Private"
   }
 }
 
