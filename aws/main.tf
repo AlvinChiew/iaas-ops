@@ -33,13 +33,15 @@ module "ecr" {
   source = "./operations/ecr"
 }
 
-# module "ecs_cluster" {
-#   source      = "./operations/ecs_cluster"
-#   prod_vpc_id = module.vpc.prod_vpc_id
-#   prod_sg_id = module.vpc.prod_sg_id
-#   stag_vpc_id = module.vpc.stag_vpc_id
-#   stag_sg_id = module.vpc.stag_sg_id
-# }
+module "ecs_cluster" {
+  source                = "./operations/ecs_cluster"
+  prod_vpc_id           = module.vpc.prod_vpc_id
+  prod_sg_id            = module.vpc.prod_sg_id
+  stag_vpc_id           = module.vpc.stag_vpc_id
+  stag_sg_id            = module.vpc.stag_sg_id
+  instance_profile_name = module.iam.ecs_instance_role_name
+  depends_on            = [module.iam, module.vpc]
+}
 
 module "iam" {
   source = "./operations/iam"

@@ -18,7 +18,8 @@ resource "aws_subnet" "prod_alvinchiew_a" {
   availability_zone = "ap-southeast-1a"
 
   tags = {
-    Name = "subnet-prod-alvinchiew-a"
+    Name    = "subnet-prod-alvinchiew-a"
+    Network = "Private"
   }
 }
 
