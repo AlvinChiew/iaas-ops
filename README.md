@@ -11,7 +11,7 @@ This is a terraform repository to perform IaaS on AWS Cloud Infrastructure
 ## Setup environment in CLI
 
 1. AWS: [installation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html), [configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
-<!-- 2. Cloudflare: [installation](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/), [configuration](https://developers.cloudflare.com/cloudflare-one/tutorials/cli/), [example](https://learn.hashicorp.com/tutorials/terraform/cloudflare-static-website) -->
+2. Cloudflare: [installation](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/), [configuration](https://developers.cloudflare.com/cloudflare-one/tutorials/cli/), [example](https://learn.hashicorp.com/tutorials/terraform/cloudflare-static-website)
 
 ## Setting up pre-commit
 

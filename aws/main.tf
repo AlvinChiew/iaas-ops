@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "alvinchiew-ops"
-    key    = "terraform/iaas-ops.tfstate"
+    key    = "terraform/aws-ops.tfstate"
     region = "ap-southeast-1"
   }
 
