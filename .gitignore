@@ -1,5 +1,6 @@
 # tmp file/folder
 .tmp
+.secrets.tfvars
 
 # Local .terraform directories
 **/.terraform/*
