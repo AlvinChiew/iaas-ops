@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "webapge_unika" {
+resource "aws_s3_bucket" "webpage_unika" {
   bucket = "unika.alvinchiew.com"
   tags = {
     Owner = "alvin"
@@ -6,24 +6,24 @@ resource "aws_s3_bucket" "webapge_unika" {
   }
 }
 
-data "aws_iam_policy_document" "webapge_unika_allow_public_access" {
+data "aws_iam_policy_document" "webpage_unika_allow_public_access" {
   statement {
     principals {
       type        = "*"
       identifiers = ["*"]
     }
     actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.webapge_unika.arn}/*"]
+    resources = ["${aws_s3_bucket.webpage_unika.arn}/*"]
   }
 }
 
-resource "aws_s3_bucket_policy" "webapge_unika" {
-  bucket = aws_s3_bucket.webapge_unika.id
-  policy = data.aws_iam_policy_document.webapge_unika_allow_public_access.json
+resource "aws_s3_bucket_policy" "webpage_unika" {
+  bucket = aws_s3_bucket.webpage_unika.id
+  policy = data.aws_iam_policy_document.webpage_unika_allow_public_access.json
 }
 
-resource "aws_s3_bucket_website_configuration" "webapge_unika" {
-  bucket = aws_s3_bucket.webapge_unika.bucket
+resource "aws_s3_bucket_website_configuration" "webpage_unika" {
+  bucket = aws_s3_bucket.webpage_unika.bucket
 
   index_document {
     suffix = "index.html"
