@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "webpage_unika" {
-  bucket = "unika.alvinchiew.com"
+  bucket        = "unika.aws.alvinchiew.com"
+  force_destroy = true
   tags = {
     Owner = "alvin"
     Team  = "infra"
