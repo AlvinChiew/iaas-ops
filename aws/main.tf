@@ -47,6 +47,12 @@ module "iam" {
   source = "./operations/iam"
 }
 
+module "route53" {
+  source            = "./operations/route53"
+  unika_domain_name = module.s3.unika_domain_name
+  unika_zone_id     = module.s3.unika_zone_id
+}
+
 module "s3" {
   source = "./operations/s3"
 }
