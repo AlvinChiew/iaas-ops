@@ -21,3 +21,8 @@ resource "aws_route53_record" "aws_alvinchiew" {
     evaluate_target_health = true
   }
 }
+
+resource "local_file" "aws_alvinchiew_ns" {
+  content  = join("|", aws_route53_zone.aws_alvinchiew.name_servers)
+  filename = "../info/aws_alvinchiew_ns.tmp"
+}

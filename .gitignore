@@ -1,5 +1,8 @@
 # tmp file/folder
 .tmp
+*.tmp
+.secrets.tfvars
+req.py
 
 # Local .terraform directories
 **/.terraform/*
