@@ -1,15 +1,24 @@
-# resource "cloudflare_page_rule" "foobar" {
-#   zone_id = var.cloudflare_zone_id
-#   target = "sub.${var.cloudflare_zone}/page"
-#   priority = 1
+resource "cloudflare_page_rule" "redirect_www_alvinchiew" {
+  zone_id  = data.cloudflare_zones.domain.zones[0].id
+  target   = "https://www.alvinchiew.com/*"
+  priority = 2
 
-#   actions {
-#     ssl = "flexible"
-#     email_obfuscation = "on"
-#     minify {
-#       html = "off"
-#       css  = "on"
-#       js   = "on"
-#     }
-#   }
-# }
+  actions {
+    forwarding_url {
+      url         = "https://linktr.ee/alvinchiew"
+      status_code = 301
+    }
+  }
+}
+resource "cloudflare_page_rule" "redirect_alvinchiew" {
+  zone_id  = data.cloudflare_zones.domain.zones[0].id
+  target   = "https://alvinchiew.com/*"
+  priority = 1
+
+  actions {
+    forwarding_url {
+      url         = "https://linktr.ee/alvinchiew"
+      status_code = 301
+    }
+  }
+}

@@ -1,11 +1,6 @@
 # for import:
 # guide: https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record#import
 # requirements: get zone id via cloudflare domain overview page; dns record id via https://api.cloudflare.com/#dns-records-for-a-zone-properties with api key via https://dash.cloudflare.com/profile/api-tokens (use Global API Key)
-data "cloudflare_zones" "domain" {
-  filter {
-    name = "alvinchiew.com"
-  }
-}
 
 resource "cloudflare_record" "root" {
   zone_id = data.cloudflare_zones.domain.zones[0].id
