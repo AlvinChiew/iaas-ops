@@ -1,5 +1,4 @@
 terraform {
-
   backend "s3" {
     bucket = "alvinchiew-ops"
     key    = "terraform/cloudflare-ops.tfstate"
@@ -14,15 +13,8 @@ terraform {
   }
 }
 
-provider "cloudflare" {
-  email   = var.email
-  api_key = var.api_key
-  alias   = "default"
-}
+provider "cloudflare" {}
 
-# module "dns" {
-#   source = "./operations/dns"
-#   providers = {
-#     cloudflare = cloudflare.default
-#   }
-# }
+module "domain_alvinchiew" {
+  source = "./domain/alvinchiew"
+}
